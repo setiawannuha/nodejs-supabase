@@ -19,3 +19,5 @@ const APP_PORT = process.env.PORT || 3009;
 app.listen(APP_PORT, () => {
   console.log(`Service running on port ${APP_PORT}`);
 });
+
+module.exports = app
