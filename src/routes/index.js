@@ -11,6 +11,6 @@ router
   })
   .use(rAuth)
   .use(authentication, rMinicamp)
-  .use(rVideo);
+  .use(authentication, rVideo);
 
 module.exports = router;
