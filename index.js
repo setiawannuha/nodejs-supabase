@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router);
 
-const PORT = process.env.APP_PORT || 3009;
-app.listen(PORT, () => {
-  console.log(`Service running on port ${PORT}`);
+const APP_PORT = process.env.PORT || 3009;
+app.listen(APP_PORT, () => {
+  console.log(`Service running on port ${APP_PORT}`);
 });
