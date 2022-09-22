@@ -13,6 +13,7 @@ app.use(helmet());
 app.use(xss());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('public'))
 app.use(router);
 
 const APP_PORT = process.env.PORT || 3009;

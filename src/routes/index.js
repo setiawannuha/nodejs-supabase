@@ -7,7 +7,7 @@ const { authentication } = require("../middleware/auth");
 
 router
   .get("/", (req, res) => {
-    res.send("<h1>Its Works</h1>");
+    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
   })
   .use(rAuth)
   .use(authentication, rMinicamp)
