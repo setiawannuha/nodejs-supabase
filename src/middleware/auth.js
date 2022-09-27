@@ -7,6 +7,7 @@ module.exports = {
       if (token) {
         decoded = jwt.verify(token, process.env.JWT_SECRET);
         if (decoded) {
+          req.localProfile = decoded;
           next();
         } else {
           res.json({
@@ -21,9 +22,10 @@ module.exports = {
         });
       }
     } catch (error) {
+      console.log(error)
       res.json({
         data: null,
-        message: "invalid token",
+        message: "internal server error",
       });
     }
   },

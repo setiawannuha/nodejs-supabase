@@ -50,4 +50,11 @@ module.exports = {
       failed(res);
     }
   },
+  profile: async (req, res) => {
+    try {
+      success(res, req.localProfile);
+    } catch (error) {
+      failed(res);
+    }
+  },
 };
