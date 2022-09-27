@@ -5,15 +5,26 @@ module.exports = {
     try {
       const { token } = req.headers;
       if (token) {
-        decoded = jwt.verify(token, process.env.JWT_SECRET);
-        if (decoded) {
-          req.localProfile = decoded;
-          next();
-        } else {
-          res.json({
-            data: null,
-            message: "invalid token",
-          });
+        var parts = token.split(' ');
+        if (parts.length === 2) {
+          var scheme = parts[0];
+          var credentials = parts[1];
+          if (/^Bearer$/i.test(scheme)) {
+            jwt.verify(credentials, process.env.JWT_SECRET, function(err, decoded) {
+              req.localProfile = decoded;
+              next();
+            })
+          }else{
+            res.json({
+              data: null,
+              message: "invalid token",
+            });
+        }
+        }else{
+            res.json({
+              data: null,
+              message: "invalid token",
+            });
         }
       } else {
         res.json({
@@ -22,7 +33,6 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log(error)
       res.json({
         data: null,
         message: "internal server error",

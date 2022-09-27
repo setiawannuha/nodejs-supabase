@@ -15,7 +15,7 @@ module.exports = {
             if (compare) {
               const response = {
                 user: result[0],
-                token: jwt.sign(result[0], process.env.JWT_SECRET),
+                token: `Bearer ${jwt.sign(result[0], process.env.JWT_SECRET)}`,
               };
               success(res, response);
             } else {
